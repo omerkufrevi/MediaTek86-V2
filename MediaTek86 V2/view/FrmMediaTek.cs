@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MediaTek86_V2
+namespace MediaTek86_V2.view
 {
-    public partial class Form1 : Form
+    public partial class FrmMediaTek : Form
     {
-        public Form1()
+        public FrmMediaTek()
         {
             InitializeComponent();
         }
