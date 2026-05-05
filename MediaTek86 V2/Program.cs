@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediaTek86_V2.view;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -6,6 +7,13 @@ using System.Windows.Forms;
 
 namespace MediaTek86_V2
 {
+    /// <summary>
+    /// Application de gestion de personnel
+    /// </summary>
+    internal class NamespaceDoc { }
+    /// <summary>
+    /// Point d'entrée principal de l'application.
+    /// </summary>
     internal static class Program
     {
         /// <summary>
@@ -16,7 +24,7 @@ namespace MediaTek86_V2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FrmAuthentification());
         }
     }
 }
