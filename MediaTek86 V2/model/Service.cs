@@ -11,5 +11,18 @@ namespace MediaTek86_V2.model
     /// </summary>
     internal class Service
     {
+        public int IdService { get; }
+        public string Nom { get; }
+
+        /// <summary>
+        /// Modele du service
+        /// </summary>
+        /// <param name="idservice"></param>
+        /// <param name="nom"></param>
+        public Service(int idservice, string nom)
+        {
+            this.IdService = idservice;
+            this.Nom = nom;
+        }
     }
 }

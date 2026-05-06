@@ -53,7 +53,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bddmanager\BddManager.cs" />
+    <Compile Include="controller\FrmAuthentificationController.cs" />
+    <Compile Include="controller\FrmMediaTekController.cs" />
+    <Compile Include="dal\AbsenceAcces.cs" />
     <Compile Include="dal\Acces.cs" />
+    <Compile Include="dal\Authentification.cs" />
+    <Compile Include="dal\PersonnelAcces.cs" />
     <Compile Include="model\Absence.cs" />
     <Compile Include="model\Motif.cs" />
     <Compile Include="model\Personnel.cs" />
@@ -109,7 +114,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="controller\" />
     <Folder Include="doc\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
