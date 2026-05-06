@@ -12,11 +12,11 @@ namespace MediaTek86_V2.model
     internal class Personnel
     {
         public int IdPersonnel { get; }
-        public string Nom { get; }
-        public string Prenom { get; }
-        public string Tel { get; }
-        public string Mail { get; }
-        public int IdService { get; }
+        public string Nom { get; set; }
+        public string Prenom { get; set; }
+        public string Tel { get; set; }
+        public string Mail { get; set; }
+        public Service Service { get; set; }
 
         /// <summary>
         /// Modele du personnel
@@ -26,15 +26,15 @@ namespace MediaTek86_V2.model
         /// <param name="prenom"></param>
         /// <param name="tel"></param>
         /// <param name="mail"></param>
-        /// <param name="idservice"></param>
-        public Personnel(int idpersonnel, string nom, string prenom, string tel, string mail, int idservice) 
+        /// <param name="service"></param>
+        public Personnel(int idpersonnel, string nom, string prenom, string tel, string mail, Service service) 
         {
             this.IdPersonnel = idpersonnel;
             this.Nom = nom;
             this.Prenom = prenom;
             this.Tel = tel;
             this.Mail = mail;
-            this.IdService = idservice;
+            this.Service = service;
         }
     }
 }

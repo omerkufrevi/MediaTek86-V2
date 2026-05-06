@@ -34,7 +34,9 @@ namespace MediaTek86_V2.dal
             List<Personnel> lesPersonnels = new List<Personnel>();
             if (access.Manager != null)
             {
-                string req = "select * from personnel order by nom;";
+                string req = "select p.idpersonnel as idpersonnel, p.nom as nom, p.prenom as prenom, p.tel as tel, p.mail as mail, s.idservice as idservice, s.nom as service ";
+                req += "from personnel p join service s on (s.idservice = p.idservice) ";
+                req += "order by nom, prenom;";
                 try
                 {
                     List<Object[]> records = access.Manager.ReqSelect(req);
@@ -42,7 +44,9 @@ namespace MediaTek86_V2.dal
                     {
                         foreach (Object[] record in records)
                         {
-                            Personnel personnel = new Personnel((int)record[0], (string)record[1], (string)record[2], (string)record[3], (string)record[4], (int)record[5]);
+                            Service service = new Service((int)record[5], (string)record[6]);
+                            Personnel personnel = new Personnel((int)record[0], (string)record[1], (string)record[2],
+                                (string)record[3], (string)record[4], service);
                             lesPersonnels.Add(personnel);
                         }
                     }
@@ -70,7 +74,7 @@ namespace MediaTek86_V2.dal
                     { "@prenom", personnel.Prenom },
                     { "@tel", personnel.Tel },
                     { "@mail", personnel.Mail },
-                    { "@idservice", personnel.IdService }
+                    { "@idservice", personnel.Service.IdService }
                 };
                 try
                 {
@@ -124,7 +128,7 @@ namespace MediaTek86_V2.dal
                     { "@prenom", personnel.Prenom },
                     { "@tel", personnel.Tel },
                     { "@mail", personnel.Mail },
-                    { "@idservice", personnel.IdService}
+                    { "@idservice", personnel.Service.IdService}
                 };
                 try
                 {
