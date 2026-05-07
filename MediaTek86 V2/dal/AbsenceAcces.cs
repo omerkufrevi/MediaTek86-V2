@@ -29,20 +29,26 @@ namespace MediaTek86_V2.dal
         /// Récupère et retourne les absences
         /// </summary>
         /// <returns>liste des absences</returns>
-        public List<Absence> GetLesAbsences(int idpesronnel)
+        public List<Absence> GetLesAbsences(int idpersonnel)
         {
             List<Absence> lesAbsences = new List<Absence>();
             if (access.Manager != null)
             {
-                string req = "select idpersonnel, datedebut, datefin, idmotif from absence where idpersonnel = @idpersonnel;";
+                string req = "select a.idpersonnel as idpersonnel, a.datedebut as datedebut, a.datefin as datefin, m.idmotif as idmotif, m.libelle as libelle ";
+                req += "from absence a join motif m on (m.idmotif = a.idmotif) where a.idpersonnel = @idpersonnel ";
+                req += "order by a.datedebut desc;";
+                Dictionary<string, object> parameters = new Dictionary<string, object> {
+                    { "@idpersonnel", idpersonnel },
+                };
                 try
                 {
-                    List<Object[]> records = access.Manager.ReqSelect(req);
+                    List<Object[]> records = access.Manager.ReqSelect(req, parameters);
                     if (records != null)
                     {
                         foreach (Object[] record in records)
                         {
-                            Absence absence = new Absence((int)record[0], (DateTime)record[1], (DateTime)record[2], (int)record[5], (DateTime)record[1]);
+                            Motif motif = new Motif((int)record[3], (string)record[4]);
+                            Absence absence = new Absence((int)record[0],(DateTime)record[1], (DateTime)record[2], motif, (DateTime)record[1]);
                             lesAbsences.Add(absence);
                         }
                     }
@@ -69,7 +75,7 @@ namespace MediaTek86_V2.dal
                     { "@idpersonnel", absence.IdPersonnel },
                     { "@datedebut", absence.DateDebut },
                     { "@datefin", absence.DateFin },
-                    { "@idmotif", absence.IdMotif }
+                    { "@idmotif", absence.Motif.IdMotif}
                 };
                 try
                 {
@@ -123,7 +129,7 @@ namespace MediaTek86_V2.dal
                     { "@idpersonnel", absence.IdPersonnel },
                     { "@datedebut", absence.DateDebut },
                     { "@datefin", absence.DateFin },
-                    { "@idmotif", absence.IdMotif },
+                    { "@idmotif", absence.Motif.IdMotif },
                     { "@datedebutavant", absence.DateDebutAvant }
                 };
                 try
@@ -136,6 +142,48 @@ namespace MediaTek86_V2.dal
                     Environment.Exit(0);
                 }
             }
+        }
+
+        /// <summary>
+        /// Verifie si il y a une absence déja programmé dans le créneau
+        /// </summary>
+        /// <param name="idpersonnel"></param>
+        /// <param name="dateDebut"></param>
+        /// <param name="dateFin"></param>
+        /// <param name="ancienneDateDebut"></param>
+        /// <returns></returns>
+        public Boolean AbsenceCreneau(int idpersonnel, DateTime dateDebut, DateTime dateFin, DateTime ancienneDateDebut)
+        {
+            if (access.Manager != null)
+            {
+                string req = "select count(*) from absence where idpersonnel = @idpersonnel ";
+                req += "and datedebut <> @ancienneDateDebut ";
+                req += "and @dateDebut <= datefin ";
+                req += "and @dateFin >= datedebut;";
+
+                Dictionary<string, object> parameters = new Dictionary<string, object> {
+                    { "@idpersonnel", idpersonnel },
+                    { "@dateDebut", dateDebut },
+                    { "@dateFin", dateFin },
+                    { "@ancienneDateDebut", ancienneDateDebut }
+                };
+                try
+                {
+                    access.Manager.ReqUpdate(req, parameters);
+                    List<Object[]> records = access.Manager.ReqSelect(req, parameters);
+                    if (records != null && records.Count > 0)
+                    {
+                        return Convert.ToInt32(records[0][0]) > 0;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Environment.Exit(0);
+                }
+            }
+
+            return false;
         }
     }
 }

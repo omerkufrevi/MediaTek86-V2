@@ -24,5 +24,14 @@ namespace MediaTek86_V2.model
             this.IdMotif = idmotif;
             this.Libelle = libelle;
         }
+
+        /// <summary>
+        /// Définit l'information à afficher (juste le nom)
+        /// </summary>
+        /// <returns>nom du service</returns>
+        public override string ToString()
+        {
+            return this.Libelle;
+        }
     }
 }

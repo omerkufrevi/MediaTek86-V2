@@ -72,7 +72,7 @@ namespace MediaTek86_V2.view
         }
 
         /// <summary>
-        /// Affiche les profils
+        /// Affiche les services
         /// </summary>
         private void RemplirListeServices()
         {
@@ -194,6 +194,25 @@ namespace MediaTek86_V2.view
             if (MessageBox.Show("Voulez-vous vraiment annuler ?", "Confirmation", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 EnCourseModifPersonnel(false);
+            }
+        }
+
+        /// <summary>
+        /// Bouton pour gérer les absences
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAbsence_Click(object sender, EventArgs e)
+        {
+            if (dgvPersonnels.SelectedRows.Count > 0)
+            {
+                Personnel personnel = (Personnel)bdgPersonnels.List[bdgPersonnels.Position];
+                FrmMediaTekAbsence frm = new FrmMediaTekAbsence(personnel.IdPersonnel);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", titreFenetreInformation);
             }
         }
     }

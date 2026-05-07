@@ -22,9 +22,13 @@ namespace MediaTek86_V2.controller
         /// </summary>
         private readonly PersonnelAcces personnelAcces;
         /// <summary>
-        /// objet d'accès aux opérations possible sur Personnel
+        /// objet d'accès aux opérations possible sur Service
         /// </summary>
         private readonly ServicesAcces servicesAcces;
+        /// <summary>
+        /// objet d'accès aux opérations possible sur Motif
+        /// </summary>
+        private readonly MotifAcces motifAcces;
 
         /// <summary>
         /// Récupère les acces aux données
@@ -34,6 +38,7 @@ namespace MediaTek86_V2.controller
             absenceAcces = new AbsenceAcces();
             personnelAcces = new PersonnelAcces();
             servicesAcces = new ServicesAcces();
+            motifAcces = new MotifAcces();
         }
 
         /// <summary>
@@ -60,6 +65,14 @@ namespace MediaTek86_V2.controller
         public List<Service> GetLesServices()
         {
             return servicesAcces.GetLesServices();
+        }
+
+        /// <summary>
+        /// Récupère et retourne les motifs
+        /// </summary>
+        public List<Motif> GetLesMotifs()
+        {
+            return motifAcces.GetLesMotifs();
         }
 
         /// <summary>
@@ -114,6 +127,19 @@ namespace MediaTek86_V2.controller
         public void UpdateAbsence(Absence absence)
         {
             absenceAcces.UpdateAbsence(absence);
+        }
+
+        /// <summary>
+        /// Demande de verification des créneaux pour les absences
+        /// </summary>
+        /// <param name="idpersonnel"></param>
+        /// <param name="dateDebut"></param>
+        /// <param name="dateFin"></param>
+        /// <param name="ancienneDateDebut"></param>
+        /// <returns></returns>
+        public Boolean AbsenceCreneau(int idpersonnel, DateTime dateDebut, DateTime dateFin, DateTime ancienneDateDebut)
+        {
+            return absenceAcces.AbsenceCreneau(idpersonnel, dateDebut, dateFin, ancienneDateDebut);
         }
     }
 }

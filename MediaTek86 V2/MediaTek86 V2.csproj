@@ -58,6 +58,7 @@
     <Compile Include="dal\AbsenceAcces.cs" />
     <Compile Include="dal\Acces.cs" />
     <Compile Include="dal\Authentification.cs" />
+    <Compile Include="dal\MotifAcces.cs" />
     <Compile Include="dal\PersonnelAcces.cs" />
     <Compile Include="dal\ServicesAcces.cs" />
     <Compile Include="model\Absence.cs" />

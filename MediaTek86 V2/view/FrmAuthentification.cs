@@ -55,7 +55,6 @@ namespace MediaTek86_V2.view
                 {
                     FrmMediaTek frm = new FrmMediaTek();
                     frm.ShowDialog();
-                    this.Close();
                 }
                 else
                 {

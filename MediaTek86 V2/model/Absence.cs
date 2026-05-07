@@ -16,10 +16,10 @@ namespace MediaTek86_V2.model
     internal class Absence
     {
         public int IdPersonnel { get; }
-        public DateTime DateDebut { get; }
-        public DateTime DateFin { get; }
-        public int IdMotif { get; }
-        public DateTime DateDebutAvant {  get; }
+        public DateTime DateDebut { get; set; }
+        public DateTime DateFin { get; set; }
+        public Motif Motif { get; set; }
+        public DateTime DateDebutAvant {  get; set; }
 
         /// <summary>
         /// Modele de l'absence
@@ -27,14 +27,14 @@ namespace MediaTek86_V2.model
         /// <param name="idpersonnel"></param>
         /// <param name="datedebut"></param>
         /// <param name="datefin"></param>
-        /// <param name="idmotif"></param>
+        /// <param name="motif"></param>
         /// <param name="datedebutavant"></param>
-        public Absence(int idpersonnel, DateTime datedebut, DateTime datefin, int idmotif, DateTime datedebutavant)
+        public Absence(int idpersonnel, DateTime datedebut, DateTime datefin, Motif motif, DateTime datedebutavant)
         {
             this.IdPersonnel = idpersonnel;
             this.DateDebut = datedebut;
             this.DateFin = datefin;
-            this.IdMotif = idmotif;
+            this.Motif = motif;
             this.DateDebutAvant = datedebutavant;
         }
     }
