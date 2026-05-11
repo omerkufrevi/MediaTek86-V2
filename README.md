@@ -3,7 +3,7 @@ Application C# écrite sous Visual Studio 2022 Entreprise et exploitant une BDD 
 
 ## Présentation de l'application
 ### Présentation du contexte
-L'entreprise cliente est spécialisée dans développement de sites internet personnalisées. Elle a développé une application interne permettant de gérer plus facilement les personnels ainsi que les absences des employés. L’utilisation de cette application consiste à gérer les informations des personnels (nom, prénom, service...) ainsi que leurs absences (dates, motifs…). Cette application est régulièrement enrichie par l’ajout de nouvelles fonctionnalités et nécessite également la mise à jour des fonctionnalités existantes.<br>
+L'entreprise cliente est une médiathèque. Nous avons développé une application interne permettant de gérer plus facilement les personnels ainsi que les absences des employés. L’utilisation de cette application consiste à gérer les informations des personnels (nom, prénom, service...) ainsi que leurs absences (dates, motifs…). Cette application est régulièrement enrichie par l’ajout de nouvelles fonctionnalités et nécessite également la mise à jour des fonctionnalités existantes.<br>
 ### But de l'application
 Le responsable souhaite avoir <strong>un petit utilitaire pour gérer les profils, et donc les absences des différents personnels</strong>.<br>
 L'application MediaTek86 représente cet utilitaire.<br>
