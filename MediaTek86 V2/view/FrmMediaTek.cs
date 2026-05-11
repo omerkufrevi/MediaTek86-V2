@@ -114,11 +114,11 @@ namespace MediaTek86_V2.view
             grbLesPersonnels.Enabled = !modif;
             if (modif)
             {
-                grbPersonnel.Text = "modifier un développeur";
+                grbPersonnel.Text = "Modifier un personnel";
             }
             else
             {
-                grbPersonnel.Text = "ajouter un développeur";
+                grbPersonnel.Text = "Ajouter un personnel";
                 txtNom.Text = "";
                 txtPrenom.Text = "";
                 txtTel.Text = "";
