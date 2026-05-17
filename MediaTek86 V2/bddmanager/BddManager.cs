@@ -68,7 +68,7 @@ namespace MediaTek86_V2.bddmanager
         public void ReqUpdate(string stringQuery, Dictionary<string, object> parameters = null)
         {
             MySqlCommand command = new MySqlCommand(stringQuery, connection);
-            if (!(parameters is null))
+            if (parameters != null)
             {
                 foreach (KeyValuePair<string, object> parameter in parameters)
                 {
@@ -88,7 +88,7 @@ namespace MediaTek86_V2.bddmanager
         public List<Object[]> ReqSelect(string stringQuery, Dictionary<string, object> parameters = null)
         {
             MySqlCommand command = new MySqlCommand(stringQuery, connection);
-            if (!(parameters is null))
+            if (parameters != null)
             {
                 foreach (KeyValuePair<string, object> parameter in parameters)
                 {
@@ -108,6 +108,5 @@ namespace MediaTek86_V2.bddmanager
             reader.Close();
             return records;
         }
-
     }
 }
