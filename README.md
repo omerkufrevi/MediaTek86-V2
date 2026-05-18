@@ -68,3 +68,23 @@ Pour tester une version dans un environnement de développement, il faut d'abord
 Il faut ensuite :<br>
 . Dans MySQL, exécuter le script contenu dans habilitations.sql (présent en racine du dépôt) pour créer et remplir la BDD.<br>
 . Récupérer le code du commit voulu, l'ouvrir dans l'IDE et l'exécuter.
+
+## Authentification
+
+Pour accéder à l’application, utilisez les identifiants suivants :
+
+- **Login** : `user`
+- **Mot de passe** : `1234`
+
+## Configuration de la base de données
+
+La chaîne de connexion à la base de données se trouve dans le fichier `App.config`.
+
+### Exemple de configuration
+
+```xml
+<connectionStrings>
+    <add name="MediaTek86.Properties.Settings.mediatek86ConnectionString"
+         connectionString="server=localhost;user id=root;password=motdepasse;database=mediatek86;SslMode=none"
+         providerName="MySql.Data.MySqlClient" />
+</connectionStrings>
